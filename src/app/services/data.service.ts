@@ -11,6 +11,6 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
   getData(): Observable<any> {
-    return this.http.get('http://localhost:8000/api/usuarios/');
+    return this.http.get('http://localhost:8000/api/users/');
   }
 }

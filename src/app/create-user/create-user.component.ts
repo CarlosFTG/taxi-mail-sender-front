@@ -14,12 +14,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import { FormGroup, FormControl, Validators,ReactiveFormsModule,FormBuilder  } from '@angular/forms';
 
-import {UserService} from '../app/services/user.service'
-
-export interface DialogData {
-  animal: string;
-  name: string;
-}
+import {UserService} from '../services/user.service'
 
 /**
  * @title Dialog Overview
@@ -29,7 +24,7 @@ export interface DialogData {
   templateUrl: 'create-user.component.html',
   standalone: true,
   providers: [provideNativeDateAdapter()],
-  imports: [MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule,MatFormFieldModule,
+  imports: [MatFormFieldModule,
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
@@ -68,7 +63,7 @@ export class DialogOverviewExample {
             Validators.maxLength(10),
           ],
         ],
-        first_order: ['', [Validators.required, Validators.email]]
+        first_order: ['', [Validators.required]]
       }
     );
   }

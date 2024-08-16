@@ -10,9 +10,8 @@ export class UserService {
   constructor(private httpClient: HttpClient) { }
 
   registerUser(signin: FormGroup) {
-    this.httpClient.post('http://localhost:8000/api/usuarios/', signin.value).subscribe(
+    this.httpClient.post('http://localhost:8000/api/users/', signin.value).subscribe(
       res=>{
-      console.log(res)
     },
     err =>{
       console.log(err)
