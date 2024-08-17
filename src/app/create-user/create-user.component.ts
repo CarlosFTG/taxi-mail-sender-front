@@ -6,6 +6,7 @@ import {
   MatDialogActions,
   MatDialogClose,
   MatDialogContent,
+  MatDialogRef,
   MatDialogTitle,
 } from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -38,7 +39,10 @@ import {UserService} from '../services/user.service'
 })
 export class DialogOverviewExample {
 
-  constructor(private formBuilder: FormBuilder,private userService: UserService) { }
+  newUser: any;
+
+  constructor(private formBuilder: FormBuilder,private userService: UserService,
+    public dialogRef: MatDialogRef<DialogOverviewExample>,) { }
 
   signin: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required ]),
@@ -80,8 +84,13 @@ export class DialogOverviewExample {
   }
 
     register(){
-
-      this.userService.registerUser(this.signin);
+      this.userService.registerUser(this.signin).subscribe(
+        Response => {
+          this.dialogRef.close({data:Response});
+          this.newUser=Response
+        },
+        Error=>console.log(Error)
+      )
     }
 
     

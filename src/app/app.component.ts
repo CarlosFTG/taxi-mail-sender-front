@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,11 +9,19 @@ import { DataService } from '../app/services/data.service';
 import { DialogOverviewExample } from './create-user/create-user.component'
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { OrderDetailsComponent } from './order-details/order-details.component';
+import { StatusComponent } from './status/status.component';
 
 export interface DialogData {
   userName: string;
   userId:String
 }
+
+export interface User {
+  name: string
+  id:string
+}
+
+const ELEMENT_DATA: User[] = [];
 
 @Component({
   selector: 'app-root',
@@ -28,28 +36,35 @@ export class AppComponent implements OnInit {
   dialog = inject(MatDialog);
 
   displayedColumns: string[] = ['name', 'adif_email', 'status', 'operations'];
-  dataSource: any = [];
-
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
   data: any;
 
   constructor(private dataService: DataService,
   ) { }
 
   ngOnInit(): void {
-    this.dataService.getData().subscribe(data => {
+    this.dataService.getData().subscribe(data=>{
       for (let i = 0; i < data.users.length; i++) {
-        this.dataSource.push(data.users[i]);
+        ELEMENT_DATA.push(data.users[i])
       }
-    });
+    })
   }
   openCreateUser() {
-    this.dialog.open(DialogOverviewExample, {
+    const dialogRef=this.dialog.open(DialogOverviewExample, {
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      ELEMENT_DATA.push(result.data.usuario);
+      this.dataSource = new MatTableDataSource(ELEMENT_DATA);
     });
   }
 
   openOrderDetails(userId: String, name: String, modify:boolean) {
     this.dialog.open(OrderDetailsComponent, 
       {data: {userId, name,modify}})
+  }
+
+  openStatusDialog(userStatus: any, idUser: any){
+    this.dialog.open(StatusComponent,{data:{userStatus,idUser}});
   }
   
 }

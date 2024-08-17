@@ -80,8 +80,7 @@ export class OrderDetailsComponent {
   }
 
   saveChanges(){
-    //for (let i = 0; i < this.dataSource.length; i++) {
-      this.orderService.updateOrderByUser(this.dataSource,this.orderId)
-    //}
+      this.orderService.updateOrderByUser(this.dataSource,this.orderId);
+      this.dialogRef.close();
   }
 }

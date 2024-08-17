@@ -22,7 +22,13 @@
   <ng-container matColumnDef="status">
     <th mat-header-cell *matHeaderCellDef> Estado </th>
     <td mat-cell *matCellDef="let user"> 
-      <mat-icon  aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon> </td>
+      @if(user.status){
+        <mat-icon  aria-hidden="false" aria-label="Example home icon" fontIcon="home" style="color: darkgreen;"></mat-icon>
+      }@else{
+        <mat-icon  aria-hidden="false" aria-label="Example home icon" fontIcon="home" style="color: red;"></mat-icon>
+      }
+       
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="operations">
@@ -30,6 +36,12 @@
     <td mat-cell *matCellDef="let user"> 
       <button mat-button (click)="openOrderDetails(user._id,user.name, false)">Consultar</button>
       <button mat-button (click)="openOrderDetails(user._id,user.name, true)">Modificar</button>
+      @if(user.status){
+        <button mat-button (click)="openStatusDialog(user.status,user._id)">Desactivar peticiones</button>
+      }@else{
+        <button mat-button (click)="openStatusDialog(user.status,user._id)">Activar peticiones</button>
+
+      }
   </ng-container>
   
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
