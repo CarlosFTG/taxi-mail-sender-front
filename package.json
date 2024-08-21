@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:taxi-mail-sender": "node dist/taxi-mail-sender/server/server.mjs"
+    "serve:ssr:taxi-mail-sender": "node dist/taxi-mail-sender/server/server.mjs",
+    "deploy":"ng build --prod --base-href=taxi-mail-sender"
   },
   "private": true,
   "dependencies": {
