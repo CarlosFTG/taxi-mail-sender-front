@@ -13,11 +13,11 @@ export class OrderService {
   getOrderByUserId(userId: string): Observable<any> {
     let params = new URLSearchParams();
     params.append("userId", userId)
-    return this.httpClient.get('http://localhost:8000/api/orders',{params:{'userId':userId}});
+    return this.httpClient.get('http://email-sender-production.up.railway.app/api/orders',{params:{'userId':userId}});
   }
 
   updateOrderByUser(dataSource: any, orderId: any){
-    this.httpClient.put('http://localhost:8000/api/orders/',
+    this.httpClient.put('http://email-sender-production.up.railway.app/api/orders/',
       {params:{'dataSource':dataSource,'orderId':orderId}}).subscribe(
       res=>{
     },

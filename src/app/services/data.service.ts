@@ -18,6 +18,6 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
   getData(): Observable<any> {
-    return this.http.get('http://localhost:8000/api/users/');
+    return this.http.get('http://email-sender-production.up.railway.app/api/users/');
   }
 }

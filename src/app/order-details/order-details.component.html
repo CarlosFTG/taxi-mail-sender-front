@@ -19,6 +19,8 @@
                     <th style="background-color: chocolate;">{{ item.shift }}</th>
                     }@if (item.shift==="N") {
                     <th style="background-color: cornflowerblue;">{{ item.shift }}</th>
+                    }@if(item.shift==="X"){
+                        <th style="background-color: white;">{{ item.shift }}</th>
                     }
                     }
             }@else{
@@ -29,6 +31,7 @@
                         <option value="M">M</option>
                         <option value="T" >T</option>
                         <option value="N">N</option>
+                        <option value="X">X</option>
                       </select>
                     </th>
                 }

@@ -10,6 +10,7 @@ import { DialogOverviewExample } from './create-user/create-user.component'
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { StatusComponent } from './status/status.component';
+import { UserService } from './services/user.service';
 
 export interface DialogData {
   userName: string;
@@ -39,7 +40,7 @@ export class AppComponent implements OnInit {
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   data: any;
 
-  constructor(private dataService: DataService,
+  constructor(private dataService: DataService, private userService: UserService
   ) { }
 
   ngOnInit(): void {
@@ -65,6 +66,12 @@ export class AppComponent implements OnInit {
 
   openStatusDialog(userStatus: any, idUser: any){
     this.dialog.open(StatusComponent,{data:{userStatus,idUser}});
+  }
+
+  deleteUser(userId: string){
+    this.userService.removeUser(userId).subscribe(data=>{
+      console.log(data)
+    });
   }
   
 }

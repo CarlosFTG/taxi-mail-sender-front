@@ -46,6 +46,8 @@ export class DialogOverviewExample {
 
   signin: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required ]),
+    surname: new FormControl('', [Validators.required ]),
+    phone_number: new FormControl('', [Validators.required ]),
     personal_email: new FormControl('', [Validators.email, Validators.required ]),
     adif_email: new FormControl('', [Validators.email, Validators.required ]),
     password: new FormControl('', [Validators.required, Validators.min(3) ]),
@@ -57,16 +59,18 @@ export class DialogOverviewExample {
     this.signin = this.formBuilder.group(
       {
         name: ['', Validators.required],
+        surname: ['', Validators.required],
+        phone_number: ['', Validators.required],
         personal_email: ['', [Validators.required, Validators.email]],
         adif_email: ['', [Validators.required, Validators.email]],
-        password: [
+        /* password: [
           '',
           [
             Validators.required,
             Validators.minLength(6),
             Validators.maxLength(10),
           ],
-        ],
+        ], */
         first_order: ['', [Validators.required]]
       }
     );
@@ -76,9 +80,11 @@ export class DialogOverviewExample {
 
     this.signin = new FormGroup({
       'name': new FormControl('', Validators.required),
+      'surname': new FormControl('', Validators.required),
+      'phone_number': new FormControl('', Validators.required),
       'personal_email': new FormControl('', Validators.required),
       'adif_email': new FormControl('', Validators.required),
-      'password': new FormControl('', Validators.required),
+      // 'password': new FormControl('', Validators.required),
       'first_order': new FormControl('', Validators.required),
     });
   }

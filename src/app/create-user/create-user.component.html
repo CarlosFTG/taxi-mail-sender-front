@@ -2,8 +2,16 @@
 <mat-dialog-content>
   <form [formGroup]="signin">
   <mat-form-field>
-    <mat-label>Nombre y apellidos</mat-label>
+    <mat-label>Nombre</mat-label>
     <input matInput required formControlName="name" class="form-control">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Apellidos</mat-label>
+    <input matInput required formControlName="surname" class="form-control">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Nº Teléfono</mat-label>
+    <input matInput required formControlName="phone_number" class="form-control">
   </mat-form-field>
   <mat-form-field>
     <mat-label>Email personal</mat-label>
@@ -12,12 +20,12 @@
   <mat-form-field>
     <mat-label>Email ADIF</mat-label>
     <input matInput required formControlName="adif_email" class="form-control">
-  </mat-form-field>
+  </mat-form-field><!-- 
   
   <mat-form-field >
     <mat-label>Contraseña</mat-label>
     <input type="password" matInput formControlName="password" class="form-control">
-  </mat-form-field>
+  </mat-form-field> -->
   <mat-form-field>
     <mat-label>Fecha primera petición</mat-label>
     <input required matInput [matDatepicker]="picker" formControlName="first_order" class="form-control">
